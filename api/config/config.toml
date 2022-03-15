@@ -1,0 +1,4 @@
+[SQL]
+user = 'root'
+url = 'localhost'
+db_name = 'testing'
