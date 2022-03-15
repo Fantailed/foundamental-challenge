@@ -1,6 +1,20 @@
 version: "3"
 
 services:
+  mysql:
+    container_name: database
+    image: mysql/mysql-server:5.7
+    env_file:
+      - database/.env
+    # Set max_allowed_packet to 256M
+    command: --max_allowed_packet=32505856
+    ports:
+      - "3306:3306"
+    volumes:
+      - ./database/data:/var/lib/mysql
+    networks:
+      - fullstack-challenge
+
   frontend:
     build:
       context: "./frontend"

@@ -1,4 +1,4 @@
 [SQL]
 user = 'root'
-url = 'localhost'
-db_name = 'testing'
+url = 'database'
+db_name = 'app'
