@@ -2,7 +2,7 @@
 Welcome to our fullstack challenge! :wave:
 
 ## Setup
-1. Please fork this repository
+1. Please upload this repository to your git
 2. You will need to have [Docker](https://www.docker.com/) and [Docker Compose](https://docs.docker.com/compose/) installed
 3. To start the Frontend + API + DB run:
     ```shell
