@@ -13,8 +13,19 @@ Welcome to our little challenge! :wave:
     $ docker-compose build frontend
     ```
 
+The frontend runs on `localhost:3000`
+
+The API runs on `localhost:20002`
+- in `fullstack_challenge_api/routes/companies.py` there is a example on how to use the DB in an endpoint.
+      You need to write `db: Session = Depends(get_db))` as a parameter, then you can use the `SQLAlchemy` session. The setup is already done.
+
+The DB runs on `localhost`.
+- You should find the necessary information in the `config` directory.
+
+
 ## Challenge
-You will need to create full deployment of a NextJS frontend + FastAPI API + MySQL DB.
+You will need to create a full deployment of a NextJS frontend + FastAPI API + MySQL DB.
+The setup for the frontend, API and DB is already done, so you only need to add you code.
 
 You'll find a `challenge_companies.json` and `challenge_deals.json` in the root of this repository.
 
