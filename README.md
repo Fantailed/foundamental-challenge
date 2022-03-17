@@ -1,5 +1,5 @@
 # Fullstack Challenge
-Welcome to our little challenge! :wave:
+Welcome to our fullstack challenge! :wave:
 
 ## Setup
 1. Please fork this repository
@@ -19,15 +19,15 @@ The API runs on `localhost:20002`
 - in `fullstack_challenge_api/routes/companies.py` there is a example on how to use the DB in an endpoint.
       You need to write `db: Session = Depends(get_db))` as a parameter, then you can use the `SQLAlchemy` session. The setup is already done.
 
-The DB runs on `localhost`.
-- You should find the necessary information in the `config` directory.
+The DB runs on `localhost:3306`.
+- You should find the necessary information in the `api/config` directory.
 
 
 ## Challenge
 You will need to create a full deployment of a NextJS frontend + FastAPI API + MySQL DB.
 The setup for the frontend, API and DB is already done, so you only need to add you code.
 
-You'll find a `challenge_companies.json` and `challenge_deals.json` in the root of this repository.
+You'll find a `challenge_companies.json` and `challenge_deals.json` in the `data`-folder of this repository.
 
 1. Import the Data from the `JSON files` to the `MySQL DB`
 2. Create a `GET` endpoint in the `FastAPI` for both resources
