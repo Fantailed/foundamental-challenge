@@ -4,11 +4,16 @@ Welcome to our fullstack challenge! :wave:
 ## Setup
 1. Please upload this repository to your git
 2. You will need to have [Docker](https://www.docker.com/) and [Docker Compose](https://docs.docker.com/compose/) installed
-3. To start the Frontend + API + DB run:
+3. Install the frontend
+   ```shell
+   $ cd frontend
+   $ yarn install
+   ```
+4. To start the Frontend + API + DB run:
     ```shell
     $ docker-compose up
     ```
-4. If you install a new package for the frontend, you will need to stop the docker-compose and rebuild the frontend:
+5. If you install a new package for the frontend, you will need to stop the docker-compose and rebuild the frontend:
     ```shell
     $ docker-compose build frontend
     ```
