@@ -22,7 +22,8 @@ services:
     container_name: frontend
     restart: always
     volumes:
-      - ./frontend:/app
+      - ./frontend/src:/app/src
+      - ./frontend/public:/app/public
     ports:
       - 3000:3000
     networks:
