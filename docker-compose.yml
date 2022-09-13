@@ -3,6 +3,7 @@ version: "3"
 services:
   mysql:
     container_name: database
+    restart: always
     image: mysql/mysql-server:5.7
     env_file:
       - database/.env
@@ -12,6 +13,7 @@ services:
       - "3306:3306"
     volumes:
       - ./database/data:/var/lib/mysql
+      - ./data:/json-data
     networks:
       - fullstack-challenge
 
@@ -24,12 +26,14 @@ services:
     volumes:
       - ./frontend/src:/app/src
       - ./frontend/public:/app/public
+      - ./frontend/pages:/app/pages
     ports:
       - 3000:3000
     networks:
       - fullstack-challenge
   api:
     container_name: api
+    restart: always
     image: api
     build:
       context: ./api
