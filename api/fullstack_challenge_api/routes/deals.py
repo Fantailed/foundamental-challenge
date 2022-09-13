@@ -12,9 +12,9 @@ class Deal(Base):
     __tablename__ = 'deals'
 
     id = Column(Integer, primary_key=True)
-    date = Column(Date, primary_key=False, nullable=True)
+    date = Column(DateTime, primary_key=False, nullable=True)
     funding_amount = Column(Float, primary_key=False, nullable=True)
-    funding_round = Column(String, primary_key=False, nullable=True)
+    funding_round = Column(String(255), primary_key=False, nullable=True)
     company_id = Column(Integer, primary_key=False, nullable=True)
 
     def __repr__(self):

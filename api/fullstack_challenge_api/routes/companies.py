@@ -2,7 +2,7 @@ from fastapi import APIRouter, Depends
 from fullstack_challenge_api.utils.db import get_db
 from sqlalchemy.orm import Session
 from sqlalchemy.ext.declarative import declarative_base
-from sqlalchemy import Column, Integer, String, Date
+from sqlalchemy import Column, Integer, String, DateTime, Text
 
 router = APIRouter()
 
@@ -12,10 +12,10 @@ class Company(Base):
     __tablename__ = 'companies'
 
     id = Column(Integer, primary_key=True)
-    name = Column(String, primary_key=False, nullable=False)
-    country = Column(String, primary_key=False, nullable=True)
-    founding_date = Column(Date, primary_key=False, nullable=True)
-    description = Column(String, primary_key=False, nullable=True)
+    name = Column(String(255), primary_key=False, nullable=True)
+    country = Column(String(255), primary_key=False, nullable=True)
+    founding_date = Column(DateTime, primary_key=False, nullable=True)
+    description = Column(Text, primary_key=False, nullable=True)
 
     def __repr__(self):
         return f'Name {self.name}'
