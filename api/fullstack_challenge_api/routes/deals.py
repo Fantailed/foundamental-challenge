@@ -22,6 +22,6 @@ class Deal(Base):
 
 
 @router.get("/api/deals")
-async def get_companies(db: Session = Depends(get_db)):
+async def get_deals(db: Session = Depends(get_db)):
     q = db.query(Deal).all()
     return q
