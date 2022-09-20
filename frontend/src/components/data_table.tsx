@@ -12,16 +12,8 @@ export default function DataTable({ dataFmt, data }: DataTableProps): JSX.Elemen
         <tr>
             {dataFmt.map(x => <th>{Object.keys(x)}</th>)}
         </tr>
-        {data.map((row) =>
-            { return (
-                <tr>
-                    <td>{row.name}</td>
-                    <td>{row.funding_round}</td>
-                    <td>{row.funding_amount}</td>
-                    <td>{row.date}</td>
-                    {/* {dataFmt.forEach(({k, v}) => <td>{row[v]}</td>)} */}
-                </tr>
-        )}
+        {data.map((row) => 
+            <tr>{dataFmt.map(fmt => <td>{row[Object.values(fmt)[0]]}</td>)}</tr>
         )}
     </table>);
 }
