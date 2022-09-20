@@ -26,7 +26,6 @@ services:
     volumes:
       - ./frontend/src:/app/src
       - ./frontend/public:/app/public
-      - ./frontend/pages:/app/pages
     ports:
       - 3000:3000
     networks:
