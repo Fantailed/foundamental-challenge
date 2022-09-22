@@ -1,9 +1,8 @@
-import internal from "stream";
 
-type DataTableProps = {
-    dataFmt: {
-        [key: string]: string
-    }[],
+export type DataTableFormatSpec = {[key: string]: string}[]
+
+export type DataTableProps = {
+    dataFmt: DataTableFormatSpec
     data: any[]
 }
 

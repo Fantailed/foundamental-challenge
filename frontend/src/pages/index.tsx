@@ -3,17 +3,13 @@ import Head from 'next/head'
 import styles from '../styles/Home.module.css'
 
 import DataTable from '../components/data_table'
-import { useEffect, useState } from 'react'
-import { getCompanyDeals } from '../lib/company_deals'
+import { companyDealFormat, getCompanyDeals } from '../lib/company_deals'
 
 const apiUrl = 'http://localhost:20002/api/company_deals'
 
 const Home: NextPage = () => {
 
   const { data, isLoading } = getCompanyDeals();
-
-  if (isLoading) return <p>Loading...</p>
-  if (!data) return <p>No deal data.</p>
 
   return (
     <div className={styles.container}>
@@ -27,12 +23,11 @@ const Home: NextPage = () => {
         <h1 className={styles.title}>
           Companies & Deals
         </h1>
-
-        <DataTable dataFmt={[
-          {'Company Name': 'name'},
-          {'Funding Round': 'funding_round'},
-          {'Funding Amount': 'funding_amount'},
-          {'Deal Date': 'date'}]} data={data} />
+        {
+          isLoading? <p>Loading...</p>:
+          !data? <p>No deal data.</p> :
+          <DataTable dataFmt={companyDealFormat} data={data} />
+        }
       </main>
     </div>
   )
