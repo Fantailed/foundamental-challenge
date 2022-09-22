@@ -12,6 +12,6 @@ router = APIRouter()
 
 @router.get("/api/company_deals")
 async def get_company_deals(db: Session = Depends(get_db)):
-    res = db.query(Deal.date, Deal.funding_amount, Deal.funding_round, Company.name).join(Deal, Company.id == Deal.company_id).all()
+    res = db.query(Deal.id, Deal.date, Deal.funding_amount, Deal.funding_round, Company.name).join(Deal, Company.id == Deal.company_id).all()
 
     return res
