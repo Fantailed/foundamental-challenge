@@ -4,22 +4,13 @@ import styles from '../styles/Home.module.css'
 
 import DataTable from '../components/data_table'
 import { useEffect, useState } from 'react'
+import { getCompanyDeals } from '../lib/company_deals'
 
 const apiUrl = 'http://localhost:20002/api/company_deals'
 
 const Home: NextPage = () => {
-  const [data, setData] = useState(null);
-  const [isLoading, setLoading] = useState(false);
 
-  useEffect(() => {
-    setLoading(true);
-    fetch(apiUrl)
-      .then((res) => res.json())
-      .then((data) => {
-        setData(data);
-        setLoading(false);
-      })
-  }, []);
+  const { data, isLoading } = getCompanyDeals();
 
   if (isLoading) return <p>Loading...</p>
   if (!data) return <p>No deal data.</p>
