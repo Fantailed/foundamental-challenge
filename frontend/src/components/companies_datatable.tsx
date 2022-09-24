@@ -4,25 +4,11 @@ import { useState } from 'react';
 import { InputText } from 'primereact/inputtext';
 import { InputNumber } from 'primereact/inputnumber';
 import { EditorProps } from 'primereact';
+import { getCompanies } from '../lib/api_requests';
 
 
 export default function CompaniesDataTable() {
-    const [ companyData, setCompanyData ] = useState([
-        {
-            "founding_date": "2021-06-11T02:09:34",
-            "name": "Mayer and Sons",
-            "description": "Secured scalable standardization",
-            "id": 1,
-            "country": "Sweden"
-        },
-        {
-            "founding_date": null,
-            "name": "Bartoletti and Sons",
-            "description": "Sharable contextually-based instruction set",
-            "id": 2,
-            "country": null
-        },
-    ]);
+    const { data: companyData, isLoading } = getCompanies()
     
     const textEditor = (options: any) => {
         return <InputText type="text" value={options.value} onChange={(e) => options.editorCallback(e.target.value)} />;
@@ -36,7 +22,7 @@ export default function CompaniesDataTable() {
 
         _companyData[index] = newData;
 
-        setCompanyData(_companyData);
+        // setCompanyData(_companyData);
     }
 
     // const columns = [
