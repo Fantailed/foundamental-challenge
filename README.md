@@ -1,3 +1,9 @@
+# Edits
+
+> **Disclaimer:** I played around after the previous challenge to learn the tech stack.  
+> Associated commits have all been pushed in one go at the beginning of the challenge time.  
+> You can check the time stamps of the commits.
+
 # Fullstack Challenge
 Welcome to our fullstack challenge! :wave:
 
