@@ -12,3 +12,13 @@ export function getCompanies() {
         isError: error
     }
 }
+
+export function getCompanyDeals() {
+    const { data, error } = useSWR(API + '/company_deals', fetcher)
+
+    return {
+        data: data,
+        isLoading: !error && !data,
+        isError: error
+    }
+}
