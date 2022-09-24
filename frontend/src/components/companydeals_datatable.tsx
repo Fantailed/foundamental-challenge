@@ -13,17 +13,12 @@ export default function CompanyDealsDataTable() {
 
     const { data, isLoading } = getCompanyDeals();
 
-    if (isLoading) return (
-        // TODO: Replace with something fancier
-        <p>Loading...</p>
-    );
-
     const dynamicColumns = columns.map((col,i) => {
         return <Column key={col.field} field={col.field} header={col.header} sortable/>;
     });
 
     return (
-        <DataTable value={data} responsiveLayout="scroll">
+        <DataTable value={data} sortField="date" sortOrder={-1} scrollable scrollHeight="500px" loading={isLoading}>
             {dynamicColumns}
         </DataTable>
     );
