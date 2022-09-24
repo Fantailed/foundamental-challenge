@@ -5,7 +5,7 @@ import CompaniesDataTable from "../../components/companies_datatable";
 
 const Companies: NextPage = () => {
     return (<>
-        <Card title='Caution!'>
+        <Card className='infocard' title='Caution!'>
             <p> Modifications on this page are persisted in the database! </p>
         </Card>
 

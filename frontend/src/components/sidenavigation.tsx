@@ -11,7 +11,6 @@ export default function SideNavigation() {
                 <Image src="/vercel_white.svg" alt="App Logo" width={130} height={24} />
             </div>
 
-
             <Link href="/">{route2pageName('/')}</Link>
 
             <hr />

@@ -1,0 +1,20 @@
+.infocard {
+    margin-bottom: 12px;
+}
+
+.infocard p {
+    padding: 0px;
+}
+
+.infocard .p-card {
+    padding: 0px;
+}
+
+.infocard .p-card-title {
+    font-size: 1.1rem;
+    color: rgb(232, 72, 72);
+}
+
+.infocard .p-card-content {
+    padding: 0px;
+}
