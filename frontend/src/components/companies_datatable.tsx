@@ -12,15 +12,13 @@ export default function CompaniesDataTable() {
     }
     
     const onRowEditComplete = (e: DataTableRowEditCompleteParams) => {
-        let _companyData = [...companyData];
-        let { newData, index } = e;
-        _companyData[index] = newData;
+        let { index, newData } = e;
+        companyData[index] = newData;
 
         // API PATCH request
-        console.log('Hello', newData)
         patchCompany(newData);
         // Optimistically update state in client
-        mutate(_companyData);
+        mutate(companyData);
     }
 
     // const columns = [
