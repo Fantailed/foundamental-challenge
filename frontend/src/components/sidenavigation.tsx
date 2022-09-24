@@ -2,6 +2,7 @@ import Image from 'next/image'
 import Link from 'next/link';
 
 import styles from "./sidenavigation.module.css"
+import { route2pageName } from '../lib/pageconfig';
 
 export default function SideNavigation() {
     return(
@@ -11,13 +12,13 @@ export default function SideNavigation() {
             </div>
 
 
-            <Link href="/">Overview</Link>
+            <Link href="/">{route2pageName('/')}</Link>
 
             <hr />
+
             <p>DB Edit</p>
-            <a href="#">Services</a>
-            <a href="#">Clients</a>
-            <a href="#">Contact</a>
+            <Link href="/db/companies">{route2pageName('/db/companies')}</Link>
+            <Link href="/db/deals">{route2pageName('/db/deals')}</Link>
         </div>
     );
 }
