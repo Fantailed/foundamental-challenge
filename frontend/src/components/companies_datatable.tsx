@@ -1,8 +1,10 @@
 import { DataTable, DataTableRowEditCompleteParams } from 'primereact/datatable';
-import { Column } from 'primereact/column';
+import { Column, ColumnEditorOptions } from 'primereact/column';
 import { InputText } from 'primereact/inputtext';
-import { getCompanies, patchCompany } from '../lib/api_requests';
 import { Button } from 'primereact/button';
+import { Calendar, CalendarChangeParams } from 'primereact/calendar';
+
+import { getCompanies, patchCompany } from '../lib/api_requests';
 
 
 export default function CompaniesDataTable() {
@@ -10,6 +12,23 @@ export default function CompaniesDataTable() {
 
     const textEditor = (options: any) => {
         return <InputText type="text" value={options.value} onChange={(e) => options.editorCallback(e.target.value)} />;
+    }
+
+    function isoDateWithoutTimeZone(date: Date) {
+        if (date == null) return date;
+        var timestamp = date.getTime() - date.getTimezoneOffset() * 60000;
+        var correctDate = new Date(timestamp);
+        return correctDate.toISOString().slice(0, 19);
+    }
+
+    const dateTimeEditor = (options: any) => {
+        return <Calendar
+            id="time24"
+            value={options.value? new Date(options.value): undefined}
+            onChange={(e: any) => options.editorCallback(isoDateWithoutTimeZone(e.target.value))}
+            showTime showSeconds
+            dateFormat="yy-mm-dd"
+        />
     }
 
     const onRowEditComplete = (e: DataTableRowEditCompleteParams) => {
@@ -45,7 +64,7 @@ export default function CompaniesDataTable() {
             <Column key='name' field='name' header='Name' editor={(options) => textEditor(options)} />
             <Column key='description' field='description' header='Description' editor={(options) => textEditor(options)} />
             <Column key='country' field='country' header='Country' editor={(options) => textEditor(options)} />
-            <Column key='founding_date' field='founding_date' header='Founding Date' editor={(options) => textEditor(options)} />
+            <Column key='founding_date' field='founding_date' header='Founding Date' editor={(options) => dateTimeEditor(options)} />
             <Column rowEditor headerStyle={{ width: '10%', minWidth: '8rem' }} bodyStyle={{ textAlign: 'center' }} />
         </DataTable>
     );
