@@ -13,6 +13,7 @@ export default function Layout({children}: {children: React.ReactNode}) {
         <SideNavigation />
         
         {/* Header */}
+        {/* TODO: Use state or something to avoid recalculation at every render */}
         <HeaderBar pageTitle={route2pageName(useRouter().pathname)} />
 
         <main className={styles.main}>{children}</main>
