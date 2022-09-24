@@ -1,3 +1,4 @@
+import datetime
 from fastapi import APIRouter, Depends
 from fullstack_challenge_api.utils.db import get_db
 from sqlalchemy.orm import Session
@@ -5,7 +6,7 @@ from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy import Column, Integer, String, DateTime, Text
 from typing import Optional
 from pydantic import BaseModel
-import datetime
+from fastapi.exceptions import HTTPException
 
 router = APIRouter()
 
@@ -41,10 +42,14 @@ async def get_companies(db: Session = Depends(get_db)):
 
 @router.patch("/api/companies")
 async def update_item(companyPatch: PatchCompanyRequest, db: Session = Depends(get_db)):
+    print("Patch request came in:", companyPatch)
     company_entry = db.query(Company).filter(Company.id == companyPatch.id)
 
     if not company_entry.first():
-        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND,detail=f'There is no existing company with {id}; patch not possible.')
+        raise HTTPException(
+            status_code=404,
+            detail=f"There is no existing company with {companyPatch.id}; patch not possible.",
+        )
     company_entry = company_entry.first()
 
     for attr, value in companyPatch.dict().items():
