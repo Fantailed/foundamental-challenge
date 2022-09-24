@@ -1,4 +1,4 @@
 [SQL]
 user = 'root'
 url = 'database'
-db_name = 'app'
+db_name = 'app_test'

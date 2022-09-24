@@ -1,5 +1,5 @@
 import { DataTable, DataTableRowEditCompleteParams } from 'primereact/datatable';
-import { Column, ColumnEditorOptions } from 'primereact/column';
+import { Column } from 'primereact/column';
 import { InputText } from 'primereact/inputtext';
 import { getCompanies, patchCompany } from '../lib/api_requests';
 
@@ -31,7 +31,11 @@ export default function CompaniesDataTable() {
 
     return (
         <DataTable value={companyData} editMode="row" dataKey="id" onRowEditComplete={onRowEditComplete} responsiveLayout="scroll" loading={isLoading}>
+            <Column key='id' field='id' header='ID'/>
             <Column key='name' field='name' header='Name' editor={(options) => textEditor(options)} />
+            <Column key='description' field='description' header='Description' editor={(options) => textEditor(options)} />
+            <Column key='country' field='country' header='Country' editor={(options) => textEditor(options)} />
+            <Column key='founding_date' field='founding_date' header='Founding Date' editor={(options) => textEditor(options)} />
             <Column rowEditor headerStyle={{ width: '10%', minWidth: '8rem' }} bodyStyle={{ textAlign: 'center' }} />
         </DataTable>
     );
