@@ -2,6 +2,7 @@ import { DataTable, DataTableRowEditCompleteParams } from 'primereact/datatable'
 import { Column } from 'primereact/column';
 import { InputText } from 'primereact/inputtext';
 import { getCompanies, patchCompany } from '../lib/api_requests';
+import { Button } from 'primereact/button';
 
 
 export default function CompaniesDataTable() {
@@ -20,6 +21,9 @@ export default function CompaniesDataTable() {
         // Optimistically update state in client
         mutate(companyData);
     }
+    
+    const paginatorLeft = <Button type="button" icon="pi pi-refresh" className="p-button-text" />;
+    const paginatorRight = <Button type="button" icon="pi pi-cloud" className="p-button-text" />;
 
     return (
         <DataTable
@@ -29,6 +33,13 @@ export default function CompaniesDataTable() {
             onRowEditComplete={onRowEditComplete}
             responsiveLayout="scroll"
             loading={isLoading}
+            paginator
+            paginatorTemplate="CurrentPageReport FirstPageLink PrevPageLink PageLinks NextPageLink LastPageLink RowsPerPageDropdown"
+            currentPageReportTemplate="Showing {first} to {last} of {totalRecords}"
+            rows={10} rowsPerPageOptions={[10,20,50]}
+            paginatorLeft={paginatorLeft} paginatorRight={paginatorRight}
+            autoLayout={true}
+            size="small"
         >
             <Column key='id' field='id' header='ID' />
             <Column key='name' field='name' header='Name' editor={(options) => textEditor(options)} />
