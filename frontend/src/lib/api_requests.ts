@@ -19,7 +19,7 @@ interface CompanyPatch {
     name?: string
     description?: string
     country?: string
-    founding_date?: string // TODO: Make it proper datetime
+    founding_date?: string  // ISO Format without tz
 }
 
 export function patchCompany(patch: CompanyPatch) {

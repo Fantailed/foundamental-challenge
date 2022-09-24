@@ -3,8 +3,8 @@
 
 const pageNameDict: { [key: string]: string } = {
     '/': 'Overview',
-    '/db/companies': 'Companies',
-    '/db/deals': 'Deals',
+    '/db/companies': 'Companies DB',
+    '/db/deals': 'Deals DB',
     '/_error': 'Error',
 }
 

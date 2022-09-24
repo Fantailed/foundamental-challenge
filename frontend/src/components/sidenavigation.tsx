@@ -16,9 +16,9 @@ export default function SideNavigation() {
 
             <hr />
 
-            <p>DB Edit</p>
-            <Link href="/db/companies">{route2pageName('/db/companies')}</Link>
-            <Link href="/db/deals">{route2pageName('/db/deals')}</Link>
+            <p>Database</p>
+            <Link href="/db/companies">Companies</Link>
+            <Link href="/db/deals">Deals</Link>
         </div>
     );
 }
