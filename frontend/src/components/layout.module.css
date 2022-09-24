@@ -1,0 +1,6 @@
+/* Style page content */
+.main {
+  margin-left: var(--sidebar-width);
+  margin-top: var(--header-height);
+  padding: 0px 10px;
+}

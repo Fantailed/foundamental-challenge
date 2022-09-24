@@ -1,5 +1,6 @@
 import React from "react";
 
+import styles from "./layout.module.css"
 import HeaderBar from "./headerbar";
 import SideNavigation from "./sidenavigation";
 
@@ -12,7 +13,7 @@ export default function Layout({children}: {children: React.ReactNode}) {
         {/* Header */}
         <HeaderBar pageTitle={"Page"} />
 
-        <main>{children}</main>
+        <main className={styles.main}>{children}</main>
 
         {/* Footer */}
         </>
