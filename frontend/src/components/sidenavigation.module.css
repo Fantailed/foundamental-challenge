@@ -19,11 +19,13 @@
 
 /* The navigation menu links */
 .sidenav a {
-  padding: 6px 8px 6px 17px;
+  padding: 6px 8px 6px 10px;
   text-decoration: none;
   font-size: 20px;
   color: #cecece;
   display: block;
+  border-radius: 5px;
+  margin: auto 5px;
 }
 
 /* When you mouse over the navigation links, change their color */
@@ -36,9 +38,8 @@
   padding: 6px 8px 0px 17px;
 }
 
-.sidenav hr {
-  margin-top: 15px;
-  margin-bottom: 8pxpx;
+.sidenav link {
+  font-size: 5px;
 }
 
 /* On smaller screens, where height is less than 450px, change the style of the sidebar (less padding and a smaller font size) */
@@ -55,4 +56,9 @@
 .appLogo {
   margin-left: 7px;
   margin-bottom: 30px;
+}
+
+.active {
+  color: black;
+  background: rgba(255, 255, 255, 0.2);
 }
