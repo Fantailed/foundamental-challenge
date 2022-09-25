@@ -18,3 +18,7 @@
 .infocard .p-card-content {
     padding: 0px;
 }
+
+.p-card {
+    box-shadow: 0px 1px 3px lightgray;
+}

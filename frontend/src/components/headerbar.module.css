@@ -7,7 +7,7 @@
   z-index: 99;
   text-align: left;
   background: white;
-  box-shadow: 0px 1px 10px lightgray;
+  box-shadow: 0px 1px 3px lightgray;
 }
 
 .headerBar h1 {
