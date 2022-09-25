@@ -2,7 +2,6 @@ import Image from 'next/image'
 import Link from 'next/link';
 
 import styles from "./sidenavigation.module.css"
-import { route2pageName } from '../lib/pageconfig';
 import { Divider } from 'primereact/divider';
 import { useRouter } from 'next/router';
 
@@ -23,7 +22,7 @@ export default function SideNavigation() {
             {/* ------------------------------------------------------------ */}
             <Divider align="center" style={{ width: '90%', marginLeft: '5%' }}/>
 
-            <p>Database</p>
+            <p>DATABASE</p>
 
             <Link href="/db/companies">
                 <a className={currentRoute === '/db/companies'? styles.active: undefined}>Companies</a>

@@ -19,7 +19,7 @@
 
 /* The navigation menu links */
 .sidenav a {
-  padding: 6px 8px 6px 10px;
+  padding: 5px 8px 7px 17px;
   text-decoration: none;
   font-size: 20px;
   color: #cecece;
@@ -35,11 +35,9 @@
 
 .sidenav p {
   color: #adadad;
-  padding: 6px 8px 0px 17px;
-}
-
-.sidenav link {
-  font-size: 5px;
+  padding: 0px 8px 0px 22px;
+  margin: 7px 0px;
+  font-size: small;
 }
 
 /* On smaller screens, where height is less than 450px, change the style of the sidebar (less padding and a smaller font size) */
