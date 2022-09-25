@@ -35,6 +35,13 @@ export default function DealsDataTable() {
         return foreignKeyEditor(options, choices, placeholder);
     }
 
+    // TODO: Optimize after companyData has been contextualized
+    // Not that important though, since we use pagination
+    const companyIdFormatter = (rowData: any) => {
+        let company = companyData.find((c: any) => c.id == rowData.company_id);
+        return company? `${company.name} (${company.id})`: "-";
+    }
+
     return (
         <DBDataTable
             value={dealData}
@@ -47,7 +54,7 @@ export default function DealsDataTable() {
             <Column key='date' field='date' header='Date' editor={(options) => dateTimeEditor(options)} />
             <Column key='funding_amount' field='funding_amount' header='Funding Amount' editor={(options) => moneyEditor(options)} body={(rowData: any) => moneyFormatter(rowData.funding_amount)} />
             <Column key='funding_round' field='funding_round' header='Founding Round' editor={(options) => textEditor(options)} />
-            <Column key='company_id' field='company_id' header='Company (ID)' editor={(options) => companyIdEditor(options)} />
+            <Column key='company_id' field='company_id' header='Company (ID)' editor={(options) => companyIdEditor(options)} body={companyIdFormatter} />
             <Column rowEditor headerStyle={{ width: '10%', minWidth: '8rem' }} bodyStyle={{ textAlign: 'center' }} />
         </DBDataTable>
     );
