@@ -28,10 +28,10 @@ class Company(Base):
 
 class PatchCompanyRequest(BaseModel):
     id: int
-    name: Optional[str] = None
-    description: Optional[str] = None
-    country: Optional[str] = None
-    founding_date: Optional[datetime.datetime] = None
+    name: Optional[str]
+    description: Optional[str]
+    country: Optional[str]
+    founding_date: Optional[datetime.datetime]
 
 
 @router.get("/api/companies")
@@ -42,19 +42,16 @@ async def get_companies(db: Session = Depends(get_db)):
 
 @router.patch("/api/companies")
 async def update_item(companyPatch: PatchCompanyRequest, db: Session = Depends(get_db)):
-    print("Patch request came in:", companyPatch)
     company_entry = db.query(Company).filter(Company.id == companyPatch.id)
 
     if not company_entry.first():
         raise HTTPException(
             status_code=404,
-            detail=f"There is no existing company with {companyPatch.id}; patch not possible.",
+            detail=f"There is no existing company with ID={companyPatch.id}; patch not possible.",
         )
     company_entry = company_entry.first()
 
-    for attr, value in companyPatch.dict().items():
-        # Uncomment this to avoid being able to unset values
-        # if value:
+    for attr, value in companyPatch.dict(exclude_unset=True).items():
         setattr(company_entry, attr, value)
 
     db.commit()
