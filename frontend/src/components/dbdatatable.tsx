@@ -1,8 +1,10 @@
 import { Button } from "primereact/button";
 import { Calendar } from "primereact/calendar";
 import { DataTable, DataTableFilterMeta, DataTableRowEditCompleteParams } from "primereact/datatable";
+import { Dropdown } from "primereact/dropdown";
 import { InputNumber } from "primereact/inputnumber";
 import { InputText } from "primereact/inputtext";
+import { getCompanies } from "../lib/api_requests";
 
 // #region Editors
 
@@ -38,6 +40,18 @@ export const dateTimeEditor = (options: any) => {
     />
 }
 
+export const foreignKeyEditor = (options: any, choices: any[], placeholder:string = "Select an option") => {
+    return (
+        <Dropdown
+            value={options.value} options={choices}
+            optionLabel="label" optionValue="value"
+            onChange={(e) => options.editorCallback(e.value)}
+            placeholder={options.value? options.value: placeholder}
+            itemTemplate={(option) => {
+                return <span className={`product-badge status-${String(option.value).toLowerCase()}`}>{option.label}</span>
+            }} />
+    );
+}
 // #endregion
 
 // #region Global Search
