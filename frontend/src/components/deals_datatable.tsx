@@ -45,7 +45,7 @@ export default function DealsDataTable() {
         >
             <Column key='id' field='id' header='ID' />
             <Column key='date' field='date' header='Date' editor={(options) => dateTimeEditor(options)} />
-            <Column key='funding_amount' field='funding_amount' header='Funding Amount' editor={(options) => moneyEditor(options)} body={moneyFormatter} />
+            <Column key='funding_amount' field='funding_amount' header='Funding Amount' editor={(options) => moneyEditor(options)} body={(rowData: any) => moneyFormatter(rowData.funding_amount)} />
             <Column key='funding_round' field='funding_round' header='Founding Round' editor={(options) => textEditor(options)} />
             <Column key='company_id' field='company_id' header='Company (ID)' editor={(options) => companyIdEditor(options)} />
             <Column rowEditor headerStyle={{ width: '10%', minWidth: '8rem' }} bodyStyle={{ textAlign: 'center' }} />

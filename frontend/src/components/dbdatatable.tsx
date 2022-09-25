@@ -6,9 +6,10 @@ import { InputNumber } from "primereact/inputnumber";
 import { InputText } from "primereact/inputtext";
 
 //#region Formatters
-export const moneyFormatter = (rowData: { funding_amount: number | bigint; }) => {
-    console.log(rowData);
-    return new Intl.NumberFormat('de-DE', { style: 'currency', currency: 'EUR' }).format(rowData.funding_amount);
+export const moneyFormatter = (amount: number | bigint) => {
+    return amount?
+        Intl.NumberFormat('de-DE', { style: 'currency', currency: 'EUR' }).format(amount):
+        "-";
 }
 //#endregion
 
