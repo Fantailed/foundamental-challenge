@@ -1,9 +1,14 @@
 import { Button } from "primereact/button";
 import { Calendar } from "primereact/calendar";
 import { DataTable, DataTableFilterMeta, DataTableRowEditCompleteParams } from "primereact/datatable";
+import { InputNumber } from "primereact/inputnumber";
 import { InputText } from "primereact/inputtext";
 
 // #region Editors
+
+export const moneyEditor = (options: any) => {
+    return <InputNumber value={options.value} onValueChange={(e) => options.editorCallback(e.value)} mode="currency" currency="EUR" locale="de-DE" />
+}
 
 export const textEditor = (options: any) => {
     return <InputText type="text" value={options.value} onChange={(e) => options.editorCallback(e.target.value)} />;

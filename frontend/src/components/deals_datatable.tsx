@@ -4,7 +4,7 @@ import { Column } from 'primereact/column';
 import { FilterMatchMode } from 'primereact/api';
 
 import { getDeals, patchDeal } from '../lib/api_requests';
-import DBDataTable, { dateTimeEditor, textEditor } from './dbdatatable';
+import DBDataTable, { dateTimeEditor, moneyEditor, textEditor } from './dbdatatable';
 
 
 export default function DealsDataTable() {
@@ -37,6 +37,7 @@ export default function DealsDataTable() {
         >
             <Column key='id' field='id' header='ID' />
             <Column key='date' field='date' header='Date' editor={(options) => dateTimeEditor(options)} />
+            <Column key='funding_amount' field='funding_amount' header='Funding Amount' editor={(options) => moneyEditor(options)} />
             <Column key='funding_round' field='funding_round' header='Founding Round' editor={(options) => textEditor(options)} />
             <Column rowEditor headerStyle={{ width: '10%', minWidth: '8rem' }} bodyStyle={{ textAlign: 'center' }} />
         </DBDataTable>
