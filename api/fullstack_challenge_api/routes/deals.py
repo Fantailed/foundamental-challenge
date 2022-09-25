@@ -3,10 +3,11 @@ from fastapi import APIRouter, Depends
 from fullstack_challenge_api.utils.db import get_db
 from sqlalchemy.orm import Session
 from sqlalchemy.ext.declarative import declarative_base
-from sqlalchemy import Column, Integer, Float, DateTime, String
+from sqlalchemy import Column, Integer, Float, DateTime, String, ForeignKey
 from typing import Optional
 from pydantic import BaseModel
 from fastapi.exceptions import HTTPException
+from .companies import Company
 
 router = APIRouter()
 
@@ -20,7 +21,10 @@ class Deal(Base):
     date = Column(DateTime, primary_key=False, nullable=True)
     funding_amount = Column(Float, primary_key=False, nullable=True)
     funding_round = Column(String(255), primary_key=False, nullable=True)
-    company_id = Column(Integer, primary_key=False, nullable=True)
+    # Note: the underlying DB needs to enforce foreignkey validity
+    # Current DB does not have foreignkey constraint
+    # And I don't have the time to fix that right now
+    company_id = Column(Integer, ForeignKey(Company.id), nullable=True)
 
     def __repr__(self):
         return f"ID {self.id}"
