@@ -4,7 +4,13 @@ import { DataTable, DataTableFilterMeta, DataTableRowEditCompleteParams } from "
 import { Dropdown } from "primereact/dropdown";
 import { InputNumber } from "primereact/inputnumber";
 import { InputText } from "primereact/inputtext";
-import { getCompanies } from "../lib/api_requests";
+
+//#region Formatters
+export const moneyFormatter = (rowData: { funding_amount: number | bigint; }) => {
+    console.log(rowData);
+    return new Intl.NumberFormat('de-DE', { style: 'currency', currency: 'EUR' }).format(rowData.funding_amount);
+}
+//#endregion
 
 // #region Editors
 
@@ -40,13 +46,13 @@ export const dateTimeEditor = (options: any) => {
     />
 }
 
-export const foreignKeyEditor = (options: any, choices: any[], placeholder:string = "Select an option") => {
+export const foreignKeyEditor = (options: any, choices: any[], placeholder: string = "Select an option") => {
     return (
         <Dropdown
             value={options.value} options={choices}
             optionLabel="label" optionValue="value"
             onChange={(e) => options.editorCallback(e.value)}
-            placeholder={options.value? options.value: placeholder}
+            placeholder={options.value ? options.value : placeholder}
             itemTemplate={(option) => {
                 return <span className={`product-badge status-${String(option.value).toLowerCase()}`}>{option.label}</span>
             }} />
@@ -82,7 +88,7 @@ export const paginatorRight = <Button type="button" icon="pi pi-cloud" className
 // #endregion
 
 // #region DataTable
-export default function DBDataTable({value, onRowEditComplete, loading, filters, setFilters, children}: {
+export default function DBDataTable({ value, onRowEditComplete, loading, filters, setFilters, children }: {
     value: any[] | undefined,
     onRowEditComplete: (e: DataTableRowEditCompleteParams) => void,
     loading: boolean | undefined,
