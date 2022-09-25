@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
-import { DataTable, DataTableRowEditCompleteParams } from 'primereact/datatable';
+import { DataTableRowEditCompleteParams } from 'primereact/datatable';
 import { Column } from 'primereact/column';
 import { FilterMatchMode } from 'primereact/api';
 
 import { getCompanies, patchCompany } from '../lib/api_requests';
-import { dataTableGlobalSearchHeader, dateTimeEditor, paginatorLeft, paginatorRight, textEditor } from '../lib/datatable_utils';
+import DBDataTable, { dateTimeEditor, textEditor } from './dbdatatable';
 
 
 export default function CompaniesDataTable() {
@@ -28,23 +28,12 @@ export default function CompaniesDataTable() {
 
 
     return (
-        <DataTable
+        <DBDataTable
             value={companyData}
-            dataKey="id"
-            editMode="row"
             onRowEditComplete={onRowEditComplete}
-            responsiveLayout="scroll"
             loading={isLoading}
-            paginator
-            paginatorTemplate="CurrentPageReport FirstPageLink PrevPageLink PageLinks NextPageLink LastPageLink RowsPerPageDropdown"
-            currentPageReportTemplate="Showing {first} to {last} of {totalRecords}"
-            rows={10} rowsPerPageOptions={[10, 20, 50]}
-            paginatorLeft={paginatorLeft} paginatorRight={paginatorRight}
-            autoLayout={true}
-            size="small"
-            header={() => dataTableGlobalSearchHeader(filters, setFilters)}
             filters={filters}
-            onFilter={(e: any) => setFilters(e.filters)}
+            setFilters={setFilters}
         >
             <Column key='id' field='id' header='ID' />
             <Column key='name' field='name' header='Name' editor={(options) => textEditor(options)} />
@@ -52,6 +41,6 @@ export default function CompaniesDataTable() {
             <Column key='country' field='country' header='Country' editor={(options) => textEditor(options)} />
             <Column key='founding_date' field='founding_date' header='Founding Date' editor={(options) => dateTimeEditor(options)} />
             <Column rowEditor headerStyle={{ width: '10%', minWidth: '8rem' }} bodyStyle={{ textAlign: 'center' }} />
-        </DataTable>
+        </DBDataTable>
     );
 }

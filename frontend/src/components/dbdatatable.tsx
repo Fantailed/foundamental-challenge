@@ -1,5 +1,6 @@
 import { Button } from "primereact/button";
 import { Calendar } from "primereact/calendar";
+import { DataTable, DataTableFilterMeta, DataTableRowEditCompleteParams } from "primereact/datatable";
 import { InputText } from "primereact/inputtext";
 
 // #region Editors
@@ -59,4 +60,38 @@ export const dataTableGlobalSearchHeader = (filters: any, setFilters: React.Disp
 // #region Paginator
 export const paginatorLeft = <Button type="button" icon="pi pi-refresh" className="p-button-text" />;
 export const paginatorRight = <Button type="button" icon="pi pi-cloud" className="p-button-text" />;
+// #endregion
+
+// #region DataTable
+export default function DBDataTable({value, onRowEditComplete, loading, filters, setFilters, children}: {
+    value: any[] | undefined,
+    onRowEditComplete: (e: DataTableRowEditCompleteParams) => void,
+    loading: boolean | undefined,
+    filters: DataTableFilterMeta | undefined,
+    setFilters: React.Dispatch<React.SetStateAction<any>>,
+    children: JSX.Element[]
+}) {
+    return (
+        <DataTable
+            value={value}
+            dataKey="id"
+            editMode="row"
+            onRowEditComplete={onRowEditComplete}
+            responsiveLayout="scroll"
+            loading={loading}
+            paginator
+            paginatorTemplate="CurrentPageReport FirstPageLink PrevPageLink PageLinks NextPageLink LastPageLink RowsPerPageDropdown"
+            currentPageReportTemplate="Showing {first} to {last} of {totalRecords}"
+            rows={10} rowsPerPageOptions={[10, 20, 50]}
+            paginatorLeft={paginatorLeft} paginatorRight={paginatorRight}
+            autoLayout={true}
+            size="small"
+            header={() => dataTableGlobalSearchHeader(filters, setFilters)}
+            filters={filters}
+            onFilter={(e: any) => setFilters(e.filters)}
+        >
+            {children}
+        </DataTable>
+    );
+}
 // #endregion
