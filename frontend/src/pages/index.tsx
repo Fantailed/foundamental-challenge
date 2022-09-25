@@ -14,7 +14,7 @@ const Home: NextPage = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <Card>
+      <Card title='Latest Deals' className='table-card'>
         <CompanyDealsDataTable />
       </Card>
     </>
