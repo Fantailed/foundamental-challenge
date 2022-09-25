@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { DataTableRowEditCompleteParams } from 'primereact/datatable';
 import { Column } from 'primereact/column';
 import { FilterMatchMode } from 'primereact/api';
@@ -11,6 +11,12 @@ export default function DealsDataTable() {
     const { data: dealData, isLoading, mutate } = getDeals();
     // TODO: Use global context or something to stay up-to-date
     const { data: companyData } = getCompanies();
+    const [ companyNameMap, setCompanyNameMap ] = useState<{[key: number]: string}|null>(null);
+
+    useEffect(() => {
+        if (companyData)
+            setCompanyNameMap(Object.assign({}, ...companyData.map((c: any) => ({[c.id]: c.name}))));
+    }, [companyData]);
 
     // Row Editing
     const onRowEditComplete = (e: DataTableRowEditCompleteParams) => {
@@ -35,11 +41,9 @@ export default function DealsDataTable() {
         return foreignKeyEditor(options, choices, placeholder);
     }
 
-    // TODO: Optimize after companyData has been contextualized
-    // Not that important though, since we use pagination
     const companyIdFormatter = (rowData: any) => {
-        let company = companyData.find((c: any) => c.id == rowData.company_id);
-        return company? `${company.name} (${company.id})`: "-";
+        let id = rowData.company_id;
+        return !id? "-": companyNameMap? (`${companyNameMap[id]} (${id})`): id;
     }
 
     return (
